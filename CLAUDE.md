@@ -44,12 +44,43 @@
 ## 기술 스택
 
 - **언어**: Kotlin
-- **UI**: Jetpack Compose
-- **로컬 DB**: Room
+- **UI**: Jetpack Compose + Material3
 - **알림**: Foreground Service + NotificationManager
-- **DI**: Hilt
 - **아키텍처**: MVVM
+- 필요시 추가: Room(로컬 DB), Hilt(DI)
 
 ## 프로젝트 구조
 
-(TBD)
+```
+app/src/main/java/com/geunwoo/jun/whattodonext/
+├── MainActivity.kt          # UI 화면 (입력/타이머)
+├── TaskTimerService.kt      # 타이머 및 알림 서비스
+├── WhatToDoNextApp.kt       # Application 클래스
+└── ui/theme/
+    ├── Color.kt
+    ├── Theme.kt
+    └── Type.kt
+```
+
+## 개발 진척도
+
+### 완료된 기능
+
+- [x] **할 일 입력 화면**: 도전/충전 선택, 할 일 이름 입력, 목표 시간 설정
+- [x] **도전/충전 UI 분리**: 각각 다른 색상(오렌지/민트), 라벨, placeholder
+- [x] **1시간 초과 경고**: 도전 모드에서 1시간 넘는 일 설정시 쪼개기 제안
+- [x] **타이머 화면**: 남은 시간 카운트다운, 완료 버튼
+- [x] **상시 알림**: Foreground Service로 현재 할 일과 남은 시간 표시
+- [x] **알림에서 앱 열기**: 알림 클릭시 타이머 화면으로 이동
+- [x] **알림에서 완료**: 알림의 "완료" 버튼으로 태스크 완료
+- [x] **목표 시간 도달 푸시 알림**: 목표 시간이 됐을 때 푸시 알림
+- [x] **초과 시간 표시**: 상시 알림과 앱 화면에 "+XX:XX" 형태로 초과 시간 표시
+- [x] **3분마다 초과 알림**: 목표 시간 초과 후 3분마다 푸시 알림
+- [x] **Idle 모드**: 할 일 미설정 시 3분마다 넛지 알림 ("이 시간을 어떻게 쓸까요?" 등)
+
+### 남은 할 일
+
+- [ ] **일일 기록**: 하루 동안 완료한 일 시각화
+- [ ] **데이터 영속화**: Room DB로 태스크 기록 저장
+- [ ] **5분 전 알림**: 목표 시간 5분 전 미리 알림 (선택적)
+- [ ] **앱 아이콘**: 커스텀 앱 아이콘 디자인
